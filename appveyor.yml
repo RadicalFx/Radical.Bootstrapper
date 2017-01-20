@@ -7,9 +7,6 @@
     only:
     - develop
 
-  init:
-    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-
   skip_tags: true
   configuration: Debug
   platform: Any CPU
@@ -25,6 +22,7 @@
     - src\packages -> src\**\packages.config
 
   before_build:
+    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
     - nuget restore "src\Radical.Bootstrapper.sln"
 
   build:
@@ -52,9 +50,6 @@
     only:
     - master
 
-  init:
-    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-
   skip_tags: true
   configuration: Release
   platform: Any CPU
@@ -70,6 +65,7 @@
     - src\packages -> src\**\packages.config
 
   before_build:
+    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
     - nuget restore "src\Radical.Bootstrapper.sln"
 
   build:
