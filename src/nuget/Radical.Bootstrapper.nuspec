@@ -14,6 +14,9 @@
     <summary />
     <language>en-US</language>
     <tags>Radical</tags>
+    <dependencies>
+      <dependency id="Radical" version="[1.6,2.0)" />
+    </dependencies>
   </metadata>
   <files>
     <file src="..\build\$configuration$\Radical.Bootstrapper\lib\" target="lib\" />
