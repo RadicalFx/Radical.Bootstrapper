@@ -7,6 +7,8 @@
     only:
     - develop
 
+  appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
   skip_tags: true
   configuration: Debug
   platform: Any CPU
@@ -48,6 +50,8 @@
 - branches:
     only:
     - master
+
+  appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
   skip_tags: true
   configuration: Release
