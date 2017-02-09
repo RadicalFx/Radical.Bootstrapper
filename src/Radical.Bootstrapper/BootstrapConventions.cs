@@ -125,6 +125,10 @@ namespace Radical.Bootstrapper
         /// </value>
         public Func<Type, IEnumerable<Type>> SelectServiceContracts { get; set; }
 
+        public Predicate<Type> IsComponent { get; set; }
+
+        public Func<Type, IEnumerable<Type>> SelectComponentContracts { get; set; }
+
         public Predicate<Type> IsFactory { get; set; }
 
         public Func<Type, IEnumerable<Type>> SelectFactoryContracts { get; set; }
