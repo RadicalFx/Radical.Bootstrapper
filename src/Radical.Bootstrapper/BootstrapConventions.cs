@@ -44,6 +44,30 @@ namespace Radical.Bootstrapper
                 return types;
             };
 
+            this.IsComponent = t => this.IsConcreteType(t) && Topics.Radical.StringExtensions.IsLike(t.Namespace, "*.Components");
+
+            this.SelectComponentContracts = type =>
+            {
+                var interfaces = type.GetInterfaces();
+                var types = new HashSet<Type>(interfaces)
+                {
+                    type
+                };
+
+                var contracts = types.Where(t => t.IsAttributeDefined<ContractAttribute>());
+                if (contracts.Any())
+                {
+                    return contracts;
+                }
+
+                if (interfaces.Any())
+                {
+                    return interfaces;
+                }
+
+                return types;
+            };
+
             this.IsFactory = t => this.IsConcreteType( t ) && t.IsNested && t.Name.EndsWith( "Factory" );
 
             this.SelectFactoryContracts = type => new[] { type };
@@ -116,6 +140,10 @@ namespace Radical.Bootstrapper
         /// The is excluded.
         /// </value>
         public Func<Type, Boolean> IsExcluded { get; set; }
+
+        public Predicate<Type> IsComponent { get; private set; }
+
+        public Func<Type, IEnumerable<Type>> SelectComponentContracts { get; private set; }
 
         ///// <summary>
         ///// Gets or sets the assembly file scan patterns.
